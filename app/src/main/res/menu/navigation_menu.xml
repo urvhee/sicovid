@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_contacts"
+        android:title="Statistik"
+        android:icon="@drawable/ic_baseline_show_chart_24"/>
+
+    <item
+        android:id="@+id/fragment_home"
+        android:title="Berita"
+        android:icon="@drawable/ic_outline_menu_book_24"/>
+
+    <item
+        android:id="@+id/fragment_user"
+        android:title="FAQ"
+        android:icon="@drawable/ic_outline_help_outline_24"/>
+
+</menu>

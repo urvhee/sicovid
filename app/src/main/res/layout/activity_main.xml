@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <me.ibrahimsn.lib.SmoothBottomBar
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:sideMargins="10dp"
+        app:iconTint="@color/blue"
+        app:indicatorColor="@color/blueTransparent"
+        app:textColor="@color/blue"
+        app:indicatorRadius="10dp"
+        app:itemPadding="10dp"
+        app:backgroundColor="@color/white"
+        app:menu="@menu/navigation_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

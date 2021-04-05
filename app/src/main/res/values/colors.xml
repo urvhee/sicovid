@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#2F80ED</color>
+    <color name="colorPrimaryDark">#404EC6</color>
+    <color name="colorAccent">#F2C94C</color>
+
+    // gradient
+    <color name="gradientBlueStart">#2F80ED</color>
+    <color name="gradientBlueEnd">#404EC6</color>
+
+    <color name="red">#EB5757</color>
+    <color name="green">#219653</color>
+    <color name="orange">#F2994A</color>
+    <color name="blue">#2F80ED</color>
+    <color name="yellow">#F2C94C</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="grey">#4F4F4F</color>
+    <color name="inactive">#F2F2F2</color>
+    <color name="background">#E5E5E5</color>
+    <color name="blueTransparent">#332F80ED</color>
+
 </resources>
