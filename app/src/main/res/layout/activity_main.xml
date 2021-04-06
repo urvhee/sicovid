@@ -10,16 +10,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:sideMargins="10dp"
+        android:layout_height="56dp"
+        app:sideMargins="16dp"
         app:iconTint="@color/blue"
+        app:iconTintActive="@color/blue"
         app:indicatorColor="@color/blueTransparent"
         app:textColor="@color/blue"
-        app:indicatorRadius="10dp"
-        app:itemPadding="10dp"
+        app:indicatorRadius="8dp"
+        app:itemPadding="8dp"
         app:backgroundColor="@color/white"
         app:menu="@menu/navigation_menu"/>
 
