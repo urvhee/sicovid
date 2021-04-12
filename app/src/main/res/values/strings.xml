@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">SI Covid</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<string name="app_name">SI Covid</string>
+<!-- TODO: Remove or change this placeholder text -->
+<string name="hello_blank_fragment">Hello blank fragment</string>
+<string name="st_wa_icon">Whatsapp Icon</string>
+<string name="st_next_arrow">Next Arrow</string>
+<string name="st_title_bansos">Terinfeksi COVID-19?</string>
+<string name="st_content_bansos">Ajukan Bantuan Sosial</string>
 </resources>

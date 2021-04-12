@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <fragment
@@ -34,6 +35,8 @@
         app:indicatorRadius="8dp"
         app:itemPadding="8dp"
         app:backgroundColor="@color/white"
+        android:elevation="4dp"
+        android:outlineProvider="paddedBounds"
         app:menu="@menu/navigation_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
