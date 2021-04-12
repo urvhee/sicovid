@@ -3,12 +3,13 @@ package mtiui.dtpl.sicovid.view.statistik
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_statistic.*
 import mtiui.dtpl.sicovid.R
+import java.net.URLEncoder
 
 class StatisticFragment : Fragment() {
 
@@ -28,5 +29,16 @@ class StatisticFragment : Fragment() {
             dialIntent.data = Uri.parse("tel:" + "119")
             startActivity(dialIntent)
         }
+
+        cl_aduan_bencana.setOnClickListener {
+            val text = "Halo SICovid, saya terinfeksi covid 19 dan membutuhkan bantuan \uD83D\uDE4F"
+            val textEncoded = URLEncoder.encode(text, "UTF-8")
+            val contact = "+62 82138129177"
+            val url = "https://api.whatsapp.com/send?phone=$contact&text=$textEncoded"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
+
     }
 }

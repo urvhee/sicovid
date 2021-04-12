@@ -4,12 +4,14 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+import mtiui.dtpl.sicovid.R
 
 class NotoMediumText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
     override fun setTypeface(tf: Typeface?) {
-        val face = Typeface.createFromAsset(context.assets, "NotoSans-Medium.ttf")
+        val face = ResourcesCompat.getFont(context, R.font.notosans_medium)
         super.setTypeface(face)
     }
 }

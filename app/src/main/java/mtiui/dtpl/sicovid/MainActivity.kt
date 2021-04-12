@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.main_fragment)
-        setupActionBarWithNavController(navController)
-        supportActionBar!!.hide()
+//        setupActionBarWithNavController(navController)
+//        supportActionBar!!.hide()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
