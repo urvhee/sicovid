@@ -53,4 +53,6 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     implementation 'com.xwray:groupie:2.1.0'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

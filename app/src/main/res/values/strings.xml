@@ -1,9 +1,19 @@
 <resources>
-<string name="app_name">SI Covid</string>
-<!-- TODO: Remove or change this placeholder text -->
-<string name="hello_blank_fragment">Hello blank fragment</string>
-<string name="st_wa_icon">Whatsapp Icon</string>
-<string name="st_next_arrow">Next Arrow</string>
-<string name="st_title_bansos">Terinfeksi COVID-19?</string>
-<string name="st_content_bansos">Ajukan Bantuan Sosial</string>
+    <string name="app_name">SI Covid</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="st_wa_icon">Whatsapp Icon</string>
+    <string name="st_next_arrow">Next Arrow</string>
+    <string name="st_title_bansos">Terinfeksi COVID-19?</string>
+    <string name="st_content_bansos">Ajukan Bantuan Sosial</string>
+    <string name="st_title_aduan">Warga bandel?</string>
+    <string name="st_content_aduan">Adukan Kerumunan</string>
+    <string name="st_title_berita_detail">Melandai Lagi, Covid-19 RI Tambah 4.300 Kasus Hari Ini</string>
+    <string name="st_info_berita_detail">Kompas.com, 17 April 2021 - 17.00 WIB</string>
+
+    <string name="st_konten_berita_detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac massa at fermentum leo. Pharetra, sit nulla odio ultricies orci blandit. Aliquet sit est commodo quis consectetur commodo ac. Vitae elementum senectus sed lacus, elementum aenean. Nibh pharetra mi feugiat dolor eget enim, mattis.
+        <br>
+            Morbi urna viverra quis pellentesque tempor pharetra sem amet, morbi. Varius ullamcorper turpis gravida mattis sit. Imperdiet velit sed dolor at magna maecenas habitasse. Ac sed scelerisque dolor libero hendrerit vitae. Auctor facilisi facilisis fames cras pretium. Enim venenatis etiam ornare nunc integer rhoncus ullamcorper. At amet neque lobortis enim adipiscing ut arcu volutpat, posuere.
+        </br>
+    </string>
 </resources>

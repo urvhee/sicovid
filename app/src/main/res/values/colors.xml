@@ -17,6 +17,7 @@
 
     <color name="grey">#F2F2F2</color>
     <color name="inactive">#F2F2F2</color>
+    <color name="grey_text">#BDBDBD</color>
     <color name="background">#E5E5E5</color>
     <color name="blueTransparent">#332F80ED</color>
 
