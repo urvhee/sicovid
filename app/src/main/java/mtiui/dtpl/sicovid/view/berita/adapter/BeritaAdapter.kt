@@ -48,4 +48,8 @@ class BeritaAdapter(private val listener: BeritaListener) : RecyclerView.Adapter
 
     override fun getItemCount() : Int = mData.size
 
+    fun setBerita(beritas: Array<Berita>) {
+        mData = beritas
+        notifyDataSetChanged()
+    }
 }
