@@ -19,7 +19,7 @@ object ConfigRetrofit {
             .writeTimeout(30, TimeUnit.MINUTES)
             .retryOnConnectionFailure(true)
             .build()
-        Retrofit.Builder().baseUrl("http://backend.api/api")
+        Retrofit.Builder().baseUrl("backend-covid19-vaksin.herokuapp.com/")
             .client(okhttp)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
