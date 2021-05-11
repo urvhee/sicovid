@@ -9,3 +9,7 @@ object FormatDateConstant {
     const val FORMAT_DATE_SERVER = "yyyy-MM-dd"
     const val FORMAT_DATE_DAILY_PATH = "MM-dd-yyyy"
 }
+
+object ExtraConstant {
+    const val EXTRA_BERITA_ID = "extra_berita_id"
+}

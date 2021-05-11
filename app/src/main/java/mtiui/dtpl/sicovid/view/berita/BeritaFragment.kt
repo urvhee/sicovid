@@ -12,6 +12,7 @@ import mtiui.dtpl.sicovid.R
 import mtiui.dtpl.sicovid.data.Berita
 import mtiui.dtpl.sicovid.view.base.BaseFragment
 import mtiui.dtpl.sicovid.view.berita.adapter.BeritaAdapter
+import mtiui.dtpl.sicovid.view.beritadetail.BeritaDetailActivity
 
 class BeritaFragment : BaseFragment(), BeritaContract.BeritaView, BeritaAdapter.BeritaListener {
 
@@ -36,7 +37,9 @@ class BeritaFragment : BaseFragment(), BeritaContract.BeritaView, BeritaAdapter.
     }
 
     override fun onClickItem(berita: Berita) {
-        //TODO: Navigate to berita detail page
+        berita.id?.let {
+            startActivity(BeritaDetailActivity.getIntentWithBeritaId(activity, it))
+        } ?: showToast("Id Berita tidak ditemukan :(")
     }
 
     override fun createAdapter() {
