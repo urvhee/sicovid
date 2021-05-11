@@ -7,7 +7,7 @@ import mtiui.dtpl.sicovid.R
 fun ImageView.loadImage(url: String) {
     load(url) {
         crossfade(true)
-        placeholder(R.drawable.bg_btn)
-        error(R.drawable.bg_btn)
+        placeholder(R.drawable.placeholder_image)
+        error(R.drawable.placeholder_image)
     }
 }
