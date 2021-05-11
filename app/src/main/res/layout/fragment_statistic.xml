@@ -12,19 +12,19 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-        <mtiui.dtpl.sicovid.widget.NotoText
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_emergency"
+<!--        <mtiui.dtpl.sicovid.widget.NotoText-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/btn_emergency"-->
 
-            android:id="@+id/text_to_detail_berita"
-            android:text="Test ke detail berita"
-            android:foreground="?android:selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_marginStart="12dp"
-            />
+<!--            android:id="@+id/text_to_detail_berita"-->
+<!--            android:text="Test ke detail berita"-->
+<!--            android:foreground="?android:selectableItemBackground"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="30dp"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            />-->
 
         <androidx.cardview.widget.CardView
             app:layout_constraintStart_toStartOf="parent"

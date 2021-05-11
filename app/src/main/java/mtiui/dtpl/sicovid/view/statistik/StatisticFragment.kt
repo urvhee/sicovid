@@ -51,10 +51,10 @@ class StatisticFragment : Fragment() {
             startActivity(i)
         }
 
-        text_to_detail_berita.setOnClickListener {
-            val i = Intent(this.context, BeritaDetailActivity::class.java)
-            startActivity(i)
-        }
+//        text_to_detail_berita.setOnClickListener {
+//            val i = Intent(this.context, BeritaDetailActivity::class.java)
+//            startActivity(i)
+//        }
 
     }
 }
