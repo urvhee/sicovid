@@ -14,7 +14,7 @@ interface ApiService {
         @Query("id") id: Int = 0
     ): Observable<String> // ResponseDetailBerita (robopojo)
 
-    @GET("api/v1/berita")
+    @GET("api/v1/beritas")
     fun getBerita(
         @Query("limit") limit: Int = 10,
         @Query("offset") offset: Int = 1

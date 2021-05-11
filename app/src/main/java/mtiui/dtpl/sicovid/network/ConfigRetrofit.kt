@@ -1,5 +1,6 @@
 package mtiui.dtpl.sicovid.network
 
+import mtiui.dtpl.sicovid.utils.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +20,7 @@ object ConfigRetrofit {
             .writeTimeout(30, TimeUnit.MINUTES)
             .retryOnConnectionFailure(true)
             .build()
-        Retrofit.Builder().baseUrl("backend-covid19-vaksin.herokuapp.com/")
+        Retrofit.Builder().baseUrl(Constant.BASE_URL)
             .client(okhttp)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

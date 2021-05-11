@@ -1,5 +1,8 @@
 package mtiui.dtpl.sicovid.utils
 
+object Constant{
+    const val BASE_URL = "http://backend-covid19-vaksin.herokuapp.com"
+}
 object FormatDateConstant {
     const val FORMAT_DATE_LATEST_UPDATE = "dd MMMM yyyy, HH.mm"
     const val FORMAT_DATE = "dd MMMM yyyy"

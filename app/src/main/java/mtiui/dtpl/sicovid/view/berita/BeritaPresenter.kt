@@ -22,7 +22,7 @@ class BeritaPresenter<V : BeritaContract.BeritaView> : BasePresenter<V>(),
     override fun initData() {
 
         val request = ConfigRetrofit.retrofit
-        val call: Observable<BeritaResponse> = request.getBerita(page, limit)
+        val call: Observable<BeritaResponse> = request.getBerita(limit * (page + 1), page)
 
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
