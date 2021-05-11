@@ -3,6 +3,7 @@ package mtiui.dtpl.sicovid.view.beritadetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
 import kotlinx.android.synthetic.main.activity_berita.*
@@ -39,7 +40,10 @@ class BeritaDetailActivity : AppCompatActivity(), BeritaDetailView {
         idBerita = intent.getIntExtra(ExtraConstant.EXTRA_BERITA_ID, 0)
         initPresenter()
 
-        button_toolbar_back.setOnClickListener { this.finish() }
+        button_toolbar_back.setOnClickListener {
+            this.finish()
+            container_detail_berita.visibility = View.GONE
+        }
         button_toolbar_share.setOnClickListener {
             toast("You just clicked the share button")
         }
@@ -51,12 +55,14 @@ class BeritaDetailActivity : AppCompatActivity(), BeritaDetailView {
     }
 
     private fun initView() {
+
         val timeStr = detail?.tanggal?.toDate()?.formatTo("dd MMMM yyyy")
 
         img_banner_berita.load(detail?.urlGambar)
         title_berita.text = detail?.judul
         info_berita.text = "${detail?.sumber} - $timeStr WIB"
         konten_berita.text = " ${detail?.detailBerita} \n ${detail?.additionalDetailBerita}"
+        container_detail_berita.visibility = View.VISIBLE
     }
 
     override fun onSuccessDetailBerita(data: DetailBerita) {
