@@ -24,7 +24,7 @@ data class Berita(
     @Expose
     val tanggal: String?,
 
-    @SerializedName("url_gamber")
+    @SerializedName("url_gambar")
     @Expose
     val url: String?
 )
