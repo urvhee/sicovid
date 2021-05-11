@@ -9,7 +9,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import mtiui.dtpl.sicovid.R
 import mtiui.dtpl.sicovid.data.Berita
+import mtiui.dtpl.sicovid.utils.extension.formatTo
 import mtiui.dtpl.sicovid.utils.extension.loadImage
+import mtiui.dtpl.sicovid.utils.extension.toDate
+import java.text.SimpleDateFormat
 
 
 class BeritaAdapter(private val listener: BeritaListener) : RecyclerView.Adapter<BeritaAdapter.BeritaViewHolder>() {
@@ -26,13 +29,17 @@ class BeritaAdapter(private val listener: BeritaListener) : RecyclerView.Adapter
         val clNewsItem: ConstraintLayout = view.findViewById(R.id.cl_news_item)
 
         fun bind(berita: Berita, listener: BeritaListener) {
-            // TODO: Convert time and show
-            berita.image?.let {
+            berita.url?.let {
                 imgPhoto.loadImage(it)
             }
-            title.text = berita.title
+            berita.judul?.let { title.text = it }
             clNewsItem.setOnClickListener {
                 listener.onClickItem(berita)
+            }
+
+            berita.tanggal?.let {
+                val timeStr = it.toDate()?.formatTo("dd MMM yyyy")
+                time.text = timeStr
             }
         }
     }
