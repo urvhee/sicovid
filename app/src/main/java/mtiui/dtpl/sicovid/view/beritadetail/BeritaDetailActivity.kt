@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.detail_berita_toolbar.*
 import mtiui.dtpl.sicovid.R
-import mtiui.dtpl.sicovid.data.Berita
 import mtiui.dtpl.sicovid.utils.ExtraConstant
 import org.jetbrains.anko.toast
 
