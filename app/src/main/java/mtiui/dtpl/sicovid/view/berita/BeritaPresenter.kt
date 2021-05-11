@@ -12,7 +12,7 @@ class BeritaPresenter<V : BeritaContract.BeritaView> : BasePresenter<V>(),
     BeritaContract.BeritaPresenter<V> {
 
     val limit = 10
-    var page = 1
+    var page = 0
 
     override fun initAdapter() {
         getView().createAdapter()
@@ -22,7 +22,7 @@ class BeritaPresenter<V : BeritaContract.BeritaView> : BasePresenter<V>(),
     override fun initData() {
 
         val request = ConfigRetrofit.retrofit
-        val call: Observable<BeritaResponse> = request.getBerita("", page, limit)
+        val call: Observable<BeritaResponse> = request.getBerita(page, limit)
 
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
