@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     tools:context=".view.statistik.StatisticFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,31 +14,279 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-<!--        <mtiui.dtpl.sicovid.widget.NotoText-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/btn_emergency"-->
+        <ImageView
+            android:id="@+id/iv_covid_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_covid"
+            android:layout_marginTop="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            tools:ignore="ContentDescription" />
 
-<!--            android:id="@+id/text_to_detail_berita"-->
-<!--            android:text="Test ke detail berita"-->
-<!--            android:foreground="?android:selectableItemBackground"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="30dp"-->
-<!--            android:layout_marginStart="12dp"-->
-<!--            />-->
+        <mtiui.dtpl.sicovid.widget.NotoMediumText
+            app:layout_constraintStart_toEndOf="@id/iv_covid_logo"
+            app:layout_constraintTop_toTopOf="@id/iv_covid_logo"
+            app:layout_constraintBottom_toBottomOf="@id/iv_covid_logo"
+            app:layout_constraintEnd_toStartOf="@id/tv_update_time"
+            android:text="@string/str_city"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:textColor="@color/grey1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <mtiui.dtpl.sicovid.widget.NotoText
+            android:id="@+id/tv_update_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_covid_logo"
+            app:layout_constraintBottom_toBottomOf="@id/iv_covid_logo"
+            tools:text="12 April 2021, 17.00"
+            android:textColor="@color/grey2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_positive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_today_positive"
+            app:layout_constraintTop_toBottomOf="@id/iv_covid_logo">
+
+            <ImageView
+                android:id="@+id/iv_covid_bg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:translationX="4dp"
+                android:translationY="-4dp"
+                android:src="@drawable/ic_covid"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                tools:ignore="ContentDescription" />
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_label_positive"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/white"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:textSize="14sp"
+                android:text="@string/label_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_positive_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_label_positive"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_positive"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="250.021" />
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_positive_today"
+                app:layout_constraintStart_toEndOf="@id/tv_positive_total"
+                app:layout_constraintBottom_toBottomOf="@id/tv_positive_total"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/yellow"
+                android:textSize="12sp"
+                tools:text="(+4.212)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@id/cl_positive"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cl_healed"
+            android:layout_marginTop="12dp"
+            android:id="@+id/cl_treated"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn">
+            
+            <View
+                android:id="@+id/v_indicator_orange"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/bg_circle_orange"
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_label_treated"
+                app:layout_constraintTop_toBottomOf="@id/v_indicator_orange"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_orange"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/grey2"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_treated"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_treated_total"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_treated"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_orange"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/grey1"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="250.000"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_treated_today"
+                app:layout_constraintTop_toBottomOf="@id/tv_treated_total"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_orange"
+                android:layout_marginTop="4dp"
+                android:textSize="11sp"
+                android:textColor="@color/grey3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="(+123)"
+                tools:ignore="SmallSp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@id/cl_positive"
+            app:layout_constraintStart_toEndOf="@id/cl_treated"
+            app:layout_constraintEnd_toStartOf="@id/cl_death"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/cl_healed"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn">
+
+            <View
+                android:id="@+id/v_indicator_green"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/bg_circle_green"
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_label_healed"
+                app:layout_constraintTop_toBottomOf="@id/v_indicator_green"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_green"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/grey2"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_healed"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_healed_total"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_healed"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_green"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/grey1"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="250.000"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_healed_today"
+                app:layout_constraintTop_toBottomOf="@id/tv_healed_total"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_green"
+                android:layout_marginTop="4dp"
+                android:textSize="11sp"
+                android:textColor="@color/grey3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="(+123)"
+                tools:ignore="SmallSp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@id/cl_positive"
+            app:layout_constraintStart_toEndOf="@id/cl_healed"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/cl_death"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn">
+
+            <View
+                android:id="@+id/v_indicator_red"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/bg_circle_red"
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_label_death"
+                app:layout_constraintTop_toBottomOf="@id/v_indicator_red"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_red"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/grey2"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_death"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoMediumText
+                android:id="@+id/tv_death_total"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_death"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_red"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/grey1"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="250.000"/>
+
+            <mtiui.dtpl.sicovid.widget.NotoText
+                android:id="@+id/tv_death_today"
+                app:layout_constraintTop_toBottomOf="@id/tv_death_total"
+                app:layout_constraintStart_toStartOf="@id/v_indicator_red"
+                android:layout_marginTop="4dp"
+                android:textSize="11sp"
+                android:textColor="@color/grey3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="(+123)"
+                tools:ignore="SmallSp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/v_divider"
+            app:layout_constraintTop_toBottomOf="@id/cl_treated"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey6"/>
 
         <androidx.cardview.widget.CardView
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
             android:id="@+id/btn_emergency"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
@@ -79,8 +329,6 @@
             android:id="@+id/cl_aduan_kerumunan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
@@ -141,8 +389,6 @@
             android:id="@+id/cl_aduan_bencana"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
             android:paddingBottom="12dp"
             android:paddingTop="12dp"
@@ -199,6 +445,23 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <View
+            android:id="@+id/v_divider_2"
+            app:layout_constraintTop_toBottomOf="@id/cl_aduan_bencana"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey6"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_statistic"
+            app:layout_constraintTop_toBottomOf="@id/v_divider_2"
+            android:layout_marginTop="12dp"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

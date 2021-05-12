@@ -31,6 +31,7 @@
             <ImageView
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
 
                 android:id="@+id/button_toolbar_share"
                 android:layout_marginEnd="20dp"

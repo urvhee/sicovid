@@ -19,4 +19,9 @@
     <string name="news_image">News Image</string>
     <string name="title_faq">Frequently Asked Question (FAQ)</string>
     <string name="nav_arrow">Nav Arrow</string>
+    <string name="str_city">Kota Salemba</string>
+    <string name="label_positive">Total Kasus Terkonfirmasi</string>
+    <string name="status_treated">Dirawat</string>
+    <string name="status_healed">Sembuh</string>
+    <string name="status_death">Meninggal</string>
 </resources>
