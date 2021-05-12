@@ -17,4 +17,6 @@
         </br>
     </string>
     <string name="news_image">News Image</string>
+    <string name="title_faq">Frequently Asked Question (FAQ)</string>
+    <string name="nav_arrow">Nav Arrow</string>
 </resources>
