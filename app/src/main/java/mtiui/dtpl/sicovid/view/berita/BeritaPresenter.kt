@@ -20,18 +20,21 @@ class BeritaPresenter<V : BeritaContract.BeritaView> : BasePresenter<V>(),
 
     @SuppressLint("CheckResult")
     override fun initData() {
+        getView().showLoading()
 
         val request = ConfigRetrofit.retrofit
         val call: Observable<BeritaResponse> = request.getBerita(limit * (page + 1), page)
 
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
+                getView().hideLoading()
                 val beritas = response.data?.content
                 beritas?.let {
                     getView().setBerita(it.toTypedArray())
                 }
                 page++
             }, { error ->
+                getView().hideLoading()
                 getView().showToast("Error: ${error.message}")
             }
         )

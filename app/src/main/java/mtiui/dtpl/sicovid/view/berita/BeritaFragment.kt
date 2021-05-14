@@ -55,4 +55,12 @@ class BeritaFragment : BaseFragment(), BeritaContract.BeritaView, BeritaAdapter.
     override fun setBerita(beritas: Array<Berita>) {
         adapter.setBerita(beritas)
     }
+
+    override fun showLoading() {
+        tv_loading.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        tv_loading.visibility = View.GONE
+    }
 }

@@ -14,6 +14,8 @@ class BeritaContract{
         fun createAdapter()
         fun showToast(message: String)
         fun setBerita(beritas: Array<Berita>)
+        fun showLoading()
+        fun hideLoading()
     }
 
     interface BeritaPresenter<V : MvpView> : MvpPresenter<V>{
