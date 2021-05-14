@@ -18,16 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.main_fragment)
-//        setupActionBarWithNavController(navController)
-//        supportActionBar!!.hide()
         setupSmoothBottomMenu()
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.navigation_menu,menu)
-//        bottom_bar.setupWithNavController(menu!!, navController)
-//        return true
-//    }
 
     override fun onSupportNavigateUp(): Boolean {
         navController.navigateUp()

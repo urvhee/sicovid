@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_news_item"
+    android:layout_marginBottom="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <mtiui.dtpl.sicovid.widget.NotoText
+        android:id="@+id/tv_value_kecamatan"
+        tools:text="Sukamaju"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_value_treated"
+        android:layout_marginEnd="12dp"
+        android:layout_width="0dp"
+        android:textSize="12sp"
+        android:textColor="@color/grey3"
+        android:layout_height="wrap_content"/>
+
+    <mtiui.dtpl.sicovid.widget.NotoText
+        android:id="@+id/tv_value_treated"
+        tools:text="12.345"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_value_healed"
+        android:layout_marginEnd="8dp"
+        android:layout_width="60dp"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textColor="@color/grey3"
+        android:layout_height="wrap_content"/>
+
+    <mtiui.dtpl.sicovid.widget.NotoText
+        android:id="@+id/tv_value_healed"
+        tools:text="1.234"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_value_death"
+        android:layout_marginEnd="8dp"
+        android:layout_width="60dp"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textColor="@color/grey3"
+        android:layout_height="wrap_content"/>
+
+    <mtiui.dtpl.sicovid.widget.NotoText
+        android:id="@+id/tv_value_death"
+        tools:text="123"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="64dp"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textColor="@color/grey3"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

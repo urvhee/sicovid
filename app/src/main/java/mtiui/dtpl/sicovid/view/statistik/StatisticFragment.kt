@@ -6,24 +6,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_statistic.*
 import mtiui.dtpl.sicovid.R
-import mtiui.dtpl.sicovid.view.beritadetail.BeritaDetailActivity
+import mtiui.dtpl.sicovid.data.District
+import mtiui.dtpl.sicovid.data.Statistic
+import mtiui.dtpl.sicovid.utils.extension.formatTo
+import mtiui.dtpl.sicovid.utils.extension.toDate
+import mtiui.dtpl.sicovid.view.base.BaseFragment
+import mtiui.dtpl.sicovid.view.statistik.adapter.StatisticAdapter
 import java.net.URLEncoder
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
-class StatisticFragment : Fragment() {
+class StatisticFragment : BaseFragment(), StatisticContract.StatisticView {
+
+    lateinit var adapter: StatisticAdapter
+    lateinit var SPresenter: StatisticPresenter<StatisticContract.StatisticView>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_statistic, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        SPresenter = StatisticPresenter()
+        SPresenter.onAttach(this)
+        SPresenter.run {
+            initAdapter()
+            initStatisticData()
+            initDistrictStatisticData()
+        }
 
         btn_emergency.setOnClickListener {
             val dialIntent = Intent(Intent.ACTION_DIAL)
@@ -51,10 +68,33 @@ class StatisticFragment : Fragment() {
             startActivity(i)
         }
 
-//        text_to_detail_berita.setOnClickListener {
-//            val i = Intent(this.context, BeritaDetailActivity::class.java)
-//            startActivity(i)
-//        }
+    }
 
+    override fun createAdapter() {
+        adapter = StatisticAdapter()
+        rv_statistic.adapter = adapter
+        rv_statistic.layoutManager = LinearLayoutManager(context)
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun setDistrictStatistic(district: Array<District>) {
+        adapter.setDistrictStatistic(district)
+    }
+
+    override fun setStatistic(statistic: Statistic) {
+        val format: NumberFormat = DecimalFormat("#.###")
+        val timeStr = statistic.updateTime?.toDate()?.formatTo("dd MMM yyyy, HH:mm")
+        tv_update_time.text = timeStr ?: "-"
+        tv_positive_total.text = format.format(statistic.positiveTotal)
+        tv_positive_today.text = format.format(statistic.positiveToday)
+        tv_treated_total.text = format.format(statistic.treatedTotal)
+        tv_treated_today.text = format.format(statistic.treatedToday)
+        tv_healed_total.text = format.format(statistic.healedTotal)
+        tv_healed_today.text = format.format(statistic.healedToday)
+        tv_death_total.text = format.format(statistic.deathTotal)
+        tv_death_today.text = format.format(statistic.deathToday)
     }
 }

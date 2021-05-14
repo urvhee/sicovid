@@ -24,4 +24,5 @@
     <string name="status_treated">Dirawat</string>
     <string name="status_healed">Sembuh</string>
     <string name="status_death">Meninggal</string>
+    <string name="label_kecamatan">Kecamatan</string>
 </resources>
