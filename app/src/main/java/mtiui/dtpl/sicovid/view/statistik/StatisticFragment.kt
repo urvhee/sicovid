@@ -1,5 +1,6 @@
 package mtiui.dtpl.sicovid.view.statistik
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -84,17 +85,18 @@ class StatisticFragment : BaseFragment(), StatisticContract.StatisticView {
         adapter.setDistrictStatistic(district)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun setStatistic(statistic: Statistic) {
-        val format: NumberFormat = DecimalFormat("#.###")
+        val format: NumberFormat = DecimalFormat("#,###")
         val timeStr = statistic.updateTime?.toDate()?.formatTo("dd MMM yyyy, HH:mm")
         tv_update_time.text = timeStr ?: "-"
-        tv_positive_total.text = format.format(statistic.positiveTotal)
-        tv_positive_today.text = format.format(statistic.positiveToday)
-        tv_treated_total.text = format.format(statistic.treatedTotal)
-        tv_treated_today.text = format.format(statistic.treatedToday)
-        tv_healed_total.text = format.format(statistic.healedTotal)
-        tv_healed_today.text = format.format(statistic.healedToday)
-        tv_death_total.text = format.format(statistic.deathTotal)
-        tv_death_today.text = format.format(statistic.deathToday)
+        tv_positive_total.text = format.format(statistic.positiveTotal).replace(",", ".")
+        tv_positive_today.text = "(+${format.format(statistic.positiveToday).replace(",", ".")})"
+        tv_treated_total.text = format.format(statistic.treatedTotal).replace(",", ".")
+        tv_treated_today.text = "(+${format.format(statistic.treatedToday).replace(",", ".")})"
+        tv_healed_total.text = format.format(statistic.healedTotal).replace(",", ".")
+        tv_healed_today.text = "(+${format.format(statistic.healedToday).replace(",", ".")})"
+        tv_death_total.text = format.format(statistic.deathTotal).replace(",", ".")
+        tv_death_today.text = "(+${format.format(statistic.deathToday).replace(",", ".")})"
     }
 }

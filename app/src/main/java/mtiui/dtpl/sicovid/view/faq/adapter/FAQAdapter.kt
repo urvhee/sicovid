@@ -14,11 +14,11 @@ class FAQAdapter : RecyclerView.Adapter<FAQAdapter.FAQViewHolder>() {
     private var mData = emptyArray<FAQ>()
 
     inner class FAQViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ivArrow: ImageView = view.findViewById(R.id.iv_arrow)
-        val title: TextView = view.findViewById(R.id.tv_title_faq)
-        val content: TextView = view.findViewById(R.id.tv_content_faq)
-        val clHeadFAQ: ConstraintLayout = view.findViewById(R.id.cl_head_faq)
-        val clContentFAQ: ConstraintLayout = view.findViewById(R.id.cl_content_faq)
+        private val ivArrow: ImageView = view.findViewById(R.id.iv_arrow)
+        private val title: TextView = view.findViewById(R.id.tv_title_faq)
+        private val content: TextView = view.findViewById(R.id.tv_content_faq)
+        private val clHeadFAQ: ConstraintLayout = view.findViewById(R.id.cl_head_faq)
+        private val clContentFAQ: ConstraintLayout = view.findViewById(R.id.cl_content_faq)
 
         fun bind(faq: FAQ, position: Int) {
             title.text = faq.title

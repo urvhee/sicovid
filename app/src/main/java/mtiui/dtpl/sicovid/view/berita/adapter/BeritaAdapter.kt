@@ -1,6 +1,5 @@
 package mtiui.dtpl.sicovid.view.berita.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import mtiui.dtpl.sicovid.data.Berita
 import mtiui.dtpl.sicovid.utils.extension.formatTo
 import mtiui.dtpl.sicovid.utils.extension.loadImage
 import mtiui.dtpl.sicovid.utils.extension.toDate
-import java.text.SimpleDateFormat
 
 
 class BeritaAdapter(private val listener: BeritaListener) : RecyclerView.Adapter<BeritaAdapter.BeritaViewHolder>() {
@@ -24,10 +22,10 @@ class BeritaAdapter(private val listener: BeritaListener) : RecyclerView.Adapter
     }
 
     inner class BeritaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imgPhoto: ImageView = view.findViewById(R.id.iv_news)
-        val title: TextView = view.findViewById(R.id.tv_title)
-        val time: TextView = view.findViewById(R.id.tv_time)
-        val clNewsItem: ConstraintLayout = view.findViewById(R.id.cl_news_item)
+        private val imgPhoto: ImageView = view.findViewById(R.id.iv_news)
+        private val title: TextView = view.findViewById(R.id.tv_title)
+        private val time: TextView = view.findViewById(R.id.tv_time)
+        private val clNewsItem: ConstraintLayout = view.findViewById(R.id.cl_news_item)
 
         fun bind(berita: Berita, listener: BeritaListener) {
             berita.url?.let {

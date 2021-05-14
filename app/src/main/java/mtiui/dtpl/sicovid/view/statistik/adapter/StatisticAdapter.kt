@@ -14,17 +14,17 @@ class StatisticAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var mData = emptyArray<District>()
 
     inner class DistrictViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val kecamatan: TextView = view.findViewById(R.id.tv_value_kecamatan)
-        val treated: TextView = view.findViewById(R.id.tv_value_treated)
-        val healed: TextView = view.findViewById(R.id.tv_value_healed)
-        val death: TextView = view.findViewById(R.id.tv_value_death)
+        private val kecamatan: TextView = view.findViewById(R.id.tv_value_kecamatan)
+        private val treated: TextView = view.findViewById(R.id.tv_value_treated)
+        private val healed: TextView = view.findViewById(R.id.tv_value_healed)
+        private val death: TextView = view.findViewById(R.id.tv_value_death)
 
         fun bind(district: District) {
-            val format: NumberFormat = DecimalFormat("#.###")
+            val format: NumberFormat = DecimalFormat("#,###")
             kecamatan.text = district.name
-            treated.text = format.format(district.treated)
-            healed.text = format.format(district.healed)
-            death.text = format.format(district.death)
+            treated.text = format.format(district.treated).replace(",", ".")
+            healed.text = format.format(district.healed).replace(",", ".")
+            death.text = format.format(district.death).replace(",", ".")
         }
     }
 
