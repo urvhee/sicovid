@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Statistic (
+    @SerializedName("city")
+    @Expose
+    val city: String?,
+
     @SerializedName("updateTime")
     @Expose
     val updateTime: String?,

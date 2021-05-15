@@ -89,6 +89,7 @@ class StatisticFragment : BaseFragment(), StatisticContract.StatisticView {
     override fun setStatistic(statistic: Statistic) {
         val format: NumberFormat = DecimalFormat("#,###")
         val timeStr = statistic.updateTime?.toDate()?.formatTo("dd MMM yyyy, HH:mm")
+        tv_kota.text = statistic.city
         tv_update_time.text = timeStr ?: "-"
         tv_positive_total.text = format.format(statistic.positiveTotal).replace(",", ".")
         tv_positive_today.text = "(+${format.format(statistic.positiveToday).replace(",", ".")})"

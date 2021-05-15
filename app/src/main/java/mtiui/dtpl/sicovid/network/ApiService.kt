@@ -4,6 +4,9 @@ import io.reactivex.Observable
 import mtiui.dtpl.sicovid.data.Berita
 import mtiui.dtpl.sicovid.data.BeritaResponse
 import mtiui.dtpl.sicovid.data.DetailBerita
+import mtiui.dtpl.sicovid.data.rekapid.Rekap
+import mtiui.dtpl.sicovid.data.rekappasien.ContentItem
+import mtiui.dtpl.sicovid.data.rekappasien.Data
 import mtiui.dtpl.sicovid.data.rekappasien.RekapPasien
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -28,4 +31,9 @@ interface ApiService {
         @Query("limit") limit: Int = 10,
         @Query("offset") offset: Int = 1
     ): Observable<RekapPasien>
+
+    @GET("api/v1/rekap_pasien_covid/find/{id}")
+    fun getRekapByID(
+        @Path("id") id: Int = 0
+    ): Observable<Rekap>
 }
