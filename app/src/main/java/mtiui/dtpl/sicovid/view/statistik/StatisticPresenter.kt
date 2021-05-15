@@ -10,6 +10,7 @@ import mtiui.dtpl.sicovid.data.Statistic
 import mtiui.dtpl.sicovid.data.rekapid.Rekap
 import mtiui.dtpl.sicovid.data.rekappasien.ContentItem
 import mtiui.dtpl.sicovid.data.rekappasien.Data
+import mtiui.dtpl.sicovid.data.rekappasien.RekapPasien
 import mtiui.dtpl.sicovid.network.ConfigRetrofit
 import mtiui.dtpl.sicovid.view.base.BasePresenter
 import java.text.SimpleDateFormat
@@ -18,6 +19,9 @@ import java.util.*
 class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>(),
     StatisticContract.StatisticPresenter<V> {
 
+    val limit = 10
+    var page = 0
+
     override fun initAdapter() {
         getView().createAdapter()
     }
@@ -25,13 +29,28 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
     @SuppressLint("CheckResult")
     override fun initDistrictStatisticData() {
         val districts = mutableListOf<District>()
+        val request = ConfigRetrofit.retrofit
+        val call: Observable<RekapPasien> = request.getRekapPasien(limit * (page + 1), page)
 
-        // TODO: Fetch real district data from BE
-        for (i in 0..10) {
-            districts.add(District("Sukamaju", 12345, 1234, 123))
-        }
-
-        getView().setDistrictStatistic(districts.toTypedArray())
+        call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+            { response ->
+                val rekap = response.data?.content
+                districts.let {
+                    for (i in 0 until rekap?.size!!) {
+                        districts.add(District(
+                            rekap[i]?.kecamatanNama!!,
+                            rekap[i]?.jumlahRawat!!,
+                            rekap[i]?.jumlahSembuh!!,
+                            rekap[i]?.jumlahMeninggal!!
+                        ))
+                    }
+                    getView().setDistrictStatistic(it.toTypedArray())
+                }
+                page++
+            }, { error ->
+                getView().showToast("Error: ${error.message}")
+            }
+        )
     }
 
     @SuppressLint("CheckResult", "SimpleDateFormat")
