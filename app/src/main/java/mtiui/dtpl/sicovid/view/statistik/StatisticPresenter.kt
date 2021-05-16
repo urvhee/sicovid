@@ -31,6 +31,7 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
                 val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                sdf.timeZone = TimeZone.getTimeZone("ID")
                 val currentDate = sdf.format(Date())
                 val statistic = Statistic(currentDate)
 
