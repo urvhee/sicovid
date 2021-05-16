@@ -4,12 +4,9 @@ import android.annotation.SuppressLint
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import mtiui.dtpl.sicovid.data.BeritaResponse
 import mtiui.dtpl.sicovid.data.District
 import mtiui.dtpl.sicovid.data.Statistic
 import mtiui.dtpl.sicovid.data.rekapid.Rekap
-import mtiui.dtpl.sicovid.data.rekappasien.ContentItem
-import mtiui.dtpl.sicovid.data.rekappasien.Data
 import mtiui.dtpl.sicovid.data.rekappasien.RekapPasien
 import mtiui.dtpl.sicovid.network.ConfigRetrofit
 import mtiui.dtpl.sicovid.view.base.BasePresenter
@@ -19,7 +16,7 @@ import java.util.*
 class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>(),
     StatisticContract.StatisticPresenter<V> {
 
-    val limit = 10
+    val limit = 50
     var page = 0
 
     override fun initAdapter() {
@@ -53,6 +50,7 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         )
     }
 
+    //TODO: Wrong implementation, fetch total data per-city. Not District
     @SuppressLint("CheckResult", "SimpleDateFormat")
     override fun initStatisticData() {
         // TODO: Fetch real statistic data from BE
