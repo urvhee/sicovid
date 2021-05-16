@@ -29,7 +29,6 @@
             app:layout_constraintTop_toTopOf="@id/iv_covid_logo"
             app:layout_constraintBottom_toBottomOf="@id/iv_covid_logo"
             app:layout_constraintEnd_toStartOf="@id/tv_update_time"
-            android:id="@+id/tv_kota"
             android:text="@string/str_city"
             android:maxLines="1"
             android:textSize="18sp"
