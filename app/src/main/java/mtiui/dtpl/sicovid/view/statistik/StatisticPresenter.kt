@@ -29,17 +29,21 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
                 val rekap = response.data?.content
-                districts.let {
-                    for (i in 0 until rekap?.size!!) {
-                        districts.add(District(
-                            rekap[i]?.kecamatanNama!!,
-                            rekap[i]?.jumlahRawat!!,
-                            rekap[i]?.jumlahSembuh!!,
-                            rekap[i]?.jumlahMeninggal!!
-                        ))
+                rekap?.let { r ->
+                    for (data in r) {
+                        data?.let {
+                            districts.add(
+                                District(
+                                    data.kecamatanNama ?: "-",
+                                    data.jumlahRawat ?: 0,
+                                    data.jumlahSembuh ?: 0,
+                                    data.jumlahMeninggal ?: 0
+                                )
+                            )
+                        }
                     }
-                    getView().setDistrictStatistic(it.toTypedArray())
                 }
+                getView().setDistrictStatistic(districts.toTypedArray())
                 page++
             }, { error ->
                 getView().showToast("Error: ${error.message}")
