@@ -16,7 +16,7 @@ import java.util.*
 class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>(),
     StatisticContract.StatisticPresenter<V> {
 
-    val limit = 50
+    val limit = 500
     var page = 0
 
     override fun initAdapter() {
