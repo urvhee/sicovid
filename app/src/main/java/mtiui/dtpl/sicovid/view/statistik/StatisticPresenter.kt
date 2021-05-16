@@ -9,6 +9,8 @@ import mtiui.dtpl.sicovid.data.Statistic
 import mtiui.dtpl.sicovid.data.rekappasien.RekapPasien
 import mtiui.dtpl.sicovid.network.ConfigRetrofit
 import mtiui.dtpl.sicovid.view.base.BasePresenter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>(),
     StatisticContract.StatisticPresenter<V> {
@@ -20,7 +22,7 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         getView().createAdapter()
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "SimpleDateFormat")
     override fun initDistrictStatisticData() {
         val districts = mutableListOf<District>()
         val request = ConfigRetrofit.retrofit
@@ -28,10 +30,20 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
 
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
+                val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                val currentDate = sdf.format(Date())
+                val statistic = Statistic(currentDate)
+
                 val rekap = response.data?.content
                 rekap?.let { r ->
                     for (data in r) {
                         data?.let {
+                            statistic.deathToday += data.jumlahMeninggalDaily ?: 0
+                            statistic.treatedToday += data.jumlahRawatDaily ?: 0
+                            statistic.healedToday += data.jumlahSembuhDaily ?: 0
+                            statistic.deathTotal += data.jumlahMeninggal ?: 0
+                            statistic.healedTotal += data.jumlahSembuh ?: 0
+                            statistic.treatedTotal += data.jumlahRawat ?: 0
                             districts.add(
                                 District(
                                     data.kecamatanNama ?: "-",
@@ -43,6 +55,8 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
                         }
                     }
                 }
+
+                getView().setStatistic(statistic)
                 getView().setDistrictStatistic(districts.toTypedArray())
                 page++
             }, { error ->
@@ -51,21 +65,5 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         )
     }
 
-    //TODO: Wrong implementation, fetch total data per-city. Not District
-    @SuppressLint("CheckResult", "SimpleDateFormat")
-    override fun initStatisticData() {
-        // TODO: Fetch real statistic data from BE
-        val statistic = Statistic(
-            "2021-05-16T17:00:00.000+0000",
-            252207,
-            24865,
-            224865,
-            1865,
-            4123,
-            123,
-            123,
-            123
-        )
-        getView().setStatistic(statistic)
-    }
+    override fun initStatisticData() {}
 }
