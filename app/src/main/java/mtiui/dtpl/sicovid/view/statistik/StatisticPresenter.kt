@@ -4,12 +4,8 @@ import android.annotation.SuppressLint
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import mtiui.dtpl.sicovid.data.BeritaResponse
 import mtiui.dtpl.sicovid.data.District
 import mtiui.dtpl.sicovid.data.Statistic
-import mtiui.dtpl.sicovid.data.rekapid.Rekap
-import mtiui.dtpl.sicovid.data.rekappasien.ContentItem
-import mtiui.dtpl.sicovid.data.rekappasien.Data
 import mtiui.dtpl.sicovid.data.rekappasien.RekapPasien
 import mtiui.dtpl.sicovid.network.ConfigRetrofit
 import mtiui.dtpl.sicovid.view.base.BasePresenter
@@ -19,14 +15,14 @@ import java.util.*
 class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>(),
     StatisticContract.StatisticPresenter<V> {
 
-    val limit = 10
+    val limit = 500
     var page = 0
 
     override fun initAdapter() {
         getView().createAdapter()
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "SimpleDateFormat")
     override fun initDistrictStatisticData() {
         val districts = mutableListOf<District>()
         val request = ConfigRetrofit.retrofit
@@ -34,18 +30,35 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
 
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
             { response ->
+                val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                sdf.timeZone = TimeZone.getTimeZone("ID")
+                val currentDate = sdf.format(Date())
+                val statistic = Statistic(currentDate)
+
                 val rekap = response.data?.content
-                districts.let {
-                    for (i in 0 until rekap?.size!!) {
-                        districts.add(District(
-                            rekap[i]?.kecamatanNama!!,
-                            rekap[i]?.jumlahRawat!!,
-                            rekap[i]?.jumlahSembuh!!,
-                            rekap[i]?.jumlahMeninggal!!
-                        ))
+                rekap?.let { r ->
+                    for (data in r) {
+                        data?.let {
+                            statistic.deathToday += data.jumlahMeninggalDaily ?: 0
+                            statistic.treatedToday += data.jumlahRawatDaily ?: 0
+                            statistic.healedToday += data.jumlahSembuhDaily ?: 0
+                            statistic.deathTotal += data.jumlahMeninggal ?: 0
+                            statistic.healedTotal += data.jumlahSembuh ?: 0
+                            statistic.treatedTotal += data.jumlahRawat ?: 0
+                            districts.add(
+                                District(
+                                    data.kecamatanNama ?: "-",
+                                    data.jumlahRawat ?: 0,
+                                    data.jumlahSembuh ?: 0,
+                                    data.jumlahMeninggal ?: 0
+                                )
+                            )
+                        }
                     }
-                    getView().setDistrictStatistic(it.toTypedArray())
                 }
+
+                getView().setStatistic(statistic)
+                getView().setDistrictStatistic(districts.toTypedArray())
                 page++
             }, { error ->
                 getView().showToast("Error: ${error.message}")
@@ -53,33 +66,5 @@ class StatisticPresenter<V : StatisticContract.StatisticView> : BasePresenter<V>
         )
     }
 
-    @SuppressLint("CheckResult", "SimpleDateFormat")
-    override fun initStatisticData() {
-        // TODO: Fetch real statistic data from BE
-        val request = ConfigRetrofit.retrofit
-        val call: Observable<Rekap> = request.getRekapByID(2)
-
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-        val currentDate = sdf.format(Date())
-
-        call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-            { response ->
-                val statistic = Statistic(
-                    response.data?.kecamatanNama!!,
-                    currentDate,//"2021-04-27T00:00:00.000+0000",
-                    response.data.total!!,
-                    response.data.jumlahRawat!!,
-                    response.data.jumlahSembuh!!,
-                    response.data.jumlahMeninggal!!,
-                    response.data.totalDaily!!,
-                    response.data.jumlahRawatDaily!!,
-                    response.data.jumlahSembuhDaily!!,
-                    response.data.jumlahMeninggalDaily!!
-                )
-                getView().setStatistic(statistic)
-            }, { error ->
-                getView().showToast("Error: ${error.message}")
-            }
-        )
-    }
+    override fun initStatisticData() {}
 }

@@ -3,44 +3,35 @@ package mtiui.dtpl.sicovid.data
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Statistic (
-    @SerializedName("city")
-    @Expose
-    val city: String?,
-
+data class Statistic(
     @SerializedName("updateTime")
     @Expose
     val updateTime: String?,
 
-    @SerializedName("positiveTotal")
-    @Expose
-    val positiveTotal: Int,
-
     @SerializedName("treatedTotal")
     @Expose
-    val treatedTotal: Int,
+    var treatedTotal: Int = 0,
 
     @SerializedName("healedTotal")
     @Expose
-    val healedTotal: Int,
+    var healedTotal: Int = 0,
 
     @SerializedName("deathTotal")
     @Expose
-    val deathTotal: Int,
-
-    @SerializedName("positiveToday")
-    @Expose
-    val positiveToday: Int,
+    var deathTotal: Int = 0,
 
     @SerializedName("treatedToday")
     @Expose
-    val treatedToday: Int,
+    var treatedToday: Int = 0,
 
     @SerializedName("healedToday")
     @Expose
-    val healedToday: Int,
+    var healedToday: Int = 0,
 
     @SerializedName("deathToday")
     @Expose
-    val deathToday: Int
-    )
+    var deathToday: Int = 0
+) {
+    fun positiveTotal() : Int = treatedTotal + healedTotal + deathTotal
+    fun positiveToday() : Int = treatedToday + healedToday + deathToday
+}

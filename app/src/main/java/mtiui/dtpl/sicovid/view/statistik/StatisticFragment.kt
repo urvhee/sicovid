@@ -89,15 +89,14 @@ class StatisticFragment : BaseFragment(), StatisticContract.StatisticView {
     override fun setStatistic(statistic: Statistic) {
         val format: NumberFormat = DecimalFormat("#,###")
         val timeStr = statistic.updateTime?.toDate()?.formatTo("dd MMM yyyy, HH:mm")
-        tv_kota.text = statistic.city
         tv_update_time.text = timeStr ?: "-"
-        tv_positive_total.text = format.format(statistic.positiveTotal).replace(",", ".")
-        tv_positive_today.text = "(+${format.format(statistic.positiveToday).replace(",", ".")})"
+        tv_positive_total.text = format.format(statistic.positiveTotal()).replace(",", ".")
+        tv_positive_today.text = "(${if (statistic.positiveToday() >= 0) "+" else "-"}${format.format(statistic.positiveToday()).replace(",", ".")})"
         tv_treated_total.text = format.format(statistic.treatedTotal).replace(",", ".")
-        tv_treated_today.text = "(+${format.format(statistic.treatedToday).replace(",", ".")})"
+        tv_treated_today.text = "(${if (statistic.treatedToday >= 0) "+" else "-"}${format.format(statistic.treatedToday).replace(",", ".")})"
         tv_healed_total.text = format.format(statistic.healedTotal).replace(",", ".")
-        tv_healed_today.text = "(+${format.format(statistic.healedToday).replace(",", ".")})"
+        tv_healed_today.text = "(${if (statistic.healedToday >= 0) "+" else "-"}${format.format(statistic.healedToday).replace(",", ".")})"
         tv_death_total.text = format.format(statistic.deathTotal).replace(",", ".")
-        tv_death_today.text = "(+${format.format(statistic.deathToday).replace(",", ".")})"
+        tv_death_today.text = "(${if (statistic.deathToday >= 0) "+" else "-"}${format.format(statistic.deathToday).replace(",", ".")})"
     }
 }
