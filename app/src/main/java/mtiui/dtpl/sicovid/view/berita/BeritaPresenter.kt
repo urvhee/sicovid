@@ -11,7 +11,7 @@ import mtiui.dtpl.sicovid.view.base.BasePresenter
 class BeritaPresenter<V : BeritaContract.BeritaView> : BasePresenter<V>(),
     BeritaContract.BeritaPresenter<V> {
 
-    val limit = 10
+    val limit = 20
     var page = 0
 
     override fun initAdapter() {
