@@ -23,8 +23,7 @@
             android:textSize="14sp"
             android:layout_marginEnd="12dp"
             android:layout_height="wrap_content"
-            tools:text="Apa itu Novel Coronavirus (2019-nCoV)?"
-            android:maxLines="1"/>
+            tools:text="Apa itu Novel Coronavirus (2019-nCoV)?"/>
 
         <ImageView
             android:id="@+id/iv_arrow"
